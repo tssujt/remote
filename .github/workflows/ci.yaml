@@ -99,6 +99,7 @@ jobs:
           echo "End running the test script inside the container with : $?"
 
       - name: Push Image
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: docker/build-push-action@v2
         env:
           CR_URL: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
